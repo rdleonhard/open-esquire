@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Bio() {
   return (
@@ -57,8 +58,10 @@ export default function Bio() {
             AI, blockchain, and automation.
           </p>
           <div className="mt-6 flex justify-center">
-            <motion.img
+            <Image
               src="/images/rob-leonhard.jpeg"
+              width={160}
+              height={160}
               alt="Rob Leonhard"
               className="w-40 h-40 rounded-full border-4 border-white shadow-lg"
               animate={{ rotate: [0, 360] }}
@@ -87,17 +90,20 @@ export default function Bio() {
 function Timeline() {
   const timelineData = [
     {
+      year: "2019",
+      text: "Open Ξsquire was conceptualized by elite legal engineer Ross Campbell and launched out of Bushwick in Brooklyn, NY, creating the first instance of a hybrid LLC/DAO. Open Ξsquire began tokenizing products on Uniswap v1, most notably the Uniring, which was the first to integrate an NFC chip into the blockchain.",
+    },
+    {
       year: "2020",
-      text: "Open Ξsquire was conceptualized by elite legal engineers.",
-    },
-    { year: "2021", text: "AI-powered contract review system launched." },
-    {
-      year: "2022",
-      text: "Blockchain-based legal agreements became industry standard.",
+      text: "Covid hits, blockchain usage explodes with the world being introduced to NFTs. Open Ξsquire provides services to dozens of projects across the Ethereum ecosystem.",
     },
     {
-      year: "2023",
+      year: "2021",
       text: "Rob Leonhard took leadership, revolutionizing legal tech.",
+    },
+    {
+      year: "2022-Present",
+      text: "Open Ξsquire continues providing clients with cutting-edge legal services integrating AI, programming and web3 mechanics.",
     },
   ];
 
@@ -127,8 +133,8 @@ function Timeline() {
 function AnimatedQuotes() {
   const quotes = [
     "“The law is not static. It evolves, just like technology.”",
-    "“Automation in legal practice is not the future—it’s the present.”",
-    "“Blockchain is not just for finance. It’s revolutionizing law.”",
+    "“Automation in legal practice is not the future—it's the present.”",
+    "“Blockchain is not just for finance. It's revolutionizing law.”",
     "“Artificial Intelligence will redefine how legal systems work.”",
   ];
   const [quoteIndex, setQuoteIndex] = useState(0);

@@ -1,8 +1,8 @@
 // app/page.js (or pages/index.js for "pages" directory setup)
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -37,6 +37,15 @@ export default function Home() {
 
       {/* Hero Section with 3D Animated Text */}
       <section className="relative flex flex-col items-center justify-center text-center h-screen">
+        <div className="mb-8">
+          <Image
+            src="/images/logo.jpeg"
+            alt="Open Esquire Logo"
+            width={200}
+            height={200}
+            className="rounded-full"
+          />
+        </div>
         <motion.h1
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -73,7 +82,7 @@ export default function Home() {
           Cutting-Edge Legal Tech
         </h2>
         <p className="text-xl text-gray-400 text-center mt-4">
-          We’re pioneering the future of law with AI, automation, and
+          We're pioneering the future of law with AI, automation, and
           blockchain.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -121,19 +130,28 @@ export default function Home() {
           &copy; {new Date().getFullYear()} Open Ξsquire. All rights reserved.
         </p>
         <div className="mt-2">
-          <Link href="#" className="text-blue-400 hover:underline">
-            LinkedIn
+          <Link
+            href="https://github.com/rdleonhard/OpenEsquire/blob/main/PrivacyPolicy.md"
+            className="text-blue-400 hover:underline"
+          >
+            Privacy Policy
           </Link>{" "}
           |
-          <Link href="#" className="text-blue-400 hover:underline">
+          <Link
+            href="https://x.com/ethlawyer"
+            className="text-blue-400 hover:underline"
+          >
             {" "}
-            Twitter
+            X
           </Link>{" "}
           |
-          <Link href="#" className="text-blue-400 hover:underline">
+          <a
+            href="mailto:openlawesq@gmail.com"
+            className="text-blue-400 hover:underline"
+          >
             {" "}
-            Contact
-          </Link>
+            Email
+          </a>
         </div>
       </footer>
     </div>

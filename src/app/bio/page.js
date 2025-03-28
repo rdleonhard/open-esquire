@@ -59,13 +59,16 @@ export default function Bio() {
           </p>
           <div className="mt-6 flex justify-center">
             <Image
-              src="/images/rob-leonhard.jpeg"
+              src={
+                process.env.NODE_ENV === "production"
+                  ? "/open-esquire/images/rob-leonhard.jpeg"
+                  : "/images/rob-leonhard.jpeg"
+              }
+              alt="Rob Leonhard"
               width={160}
               height={160}
-              alt="Rob Leonhard"
-              className="w-40 h-40 rounded-full border-4 border-white shadow-lg"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              unoptimized
+              className="rounded-lg"
             />
           </div>
         </div>

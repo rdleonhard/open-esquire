@@ -73,7 +73,7 @@ export default function Home() {
         <div
           className={`${
             mobileMenuOpen ? "flex" : "hidden"
-          } md:hidden absolute top-20 left-0 right-0 flex-col items-center bg-gray-900 py-4 space-y-4`}
+          } md:hidden absolute top-20 left-0 right-0 flex-col items-center bg-gray-900 py-4 space-y-4 z-50`}
         >
           <Link href="/" className="text-gray-300 hover:text-white transition">
             Home

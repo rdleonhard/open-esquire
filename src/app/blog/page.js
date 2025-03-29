@@ -6,80 +6,124 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Blog() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Parallax Hero Section */}
-      <section
-        className="relative flex flex-col items-center justify-center h-[60vh] bg-fixed bg-center bg-cover"
-        style={{ backgroundImage: "url('/images/blog-header.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative text-center"
+    <div className="min-h-screen bg-gray-900 text-white px-4 md:px-6">
+      {/* Navigation */}
+      <nav className="p-6 flex justify-between items-center">
+        <Link
+          href="/"
+          className="text-white font-bold text-2xl hover:text-blue-400 transition"
         >
-          <h1 className="text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-            Open Esquire Blog
-          </h1>
-          <p className="text-xl text-gray-300 mt-4">
-            Legal tech insights, AI advancements, and blockchain law.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* Return Home Button */}
-      <div className="flex justify-center mt-6">
-        <Link href="/">
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0px 0px 15px rgba(0, 153, 255, 0.8)",
-            }}
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-          >
-            Return Home
-          </motion.button>
+          Open Ξsquire
         </Link>
-      </div>
 
-      {/* Featured Blog Post Slider */}
-      <section className="py-16 px-8 md:px-16">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Featured Insights
-        </h2>
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d={
+                mobileMenuOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            ></path>
+          </svg>
+        </button>
+
+        {/* Desktop menu */}
+        <div className="hidden md:flex space-x-4">
+          <Link href="/" className="text-gray-300 hover:text-white transition">
+            Home
+          </Link>
+          <Link
+            href="/bio"
+            className="text-gray-300 hover:text-white transition"
+          >
+            Bio
+          </Link>
+          <Link
+            href="/blog"
+            className="text-gray-300 hover:text-white transition"
+          >
+            Blog
+          </Link>
+          <button
+            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
+            disabled
+          >
+            App - Coming Soon
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={`${
+            mobileMenuOpen ? "flex" : "hidden"
+          } md:hidden absolute top-20 left-0 right-0 flex-col items-center bg-gray-900 py-4 space-y-4 z-50`}
+        >
+          <Link href="/" className="text-gray-300 hover:text-white transition">
+            Home
+          </Link>
+          <Link
+            href="/bio"
+            className="text-gray-300 hover:text-white transition"
+          >
+            Bio
+          </Link>
+          <Link
+            href="/blog"
+            className="text-gray-300 hover:text-white transition"
+          >
+            Blog
+          </Link>
+          <button
+            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
+            disabled
+          >
+            App - Coming Soon
+          </button>
+        </div>
+      </nav>
+
+      {/* Blog Header */}
+      <header className="py-8 md:py-16 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mb-4">
+          Legal Tech Insights
+        </h1>
+        <p className="text-lg md:text-xl text-gray-400">
+          Exploring the intersection of law, technology, and innovation
+        </p>
+      </header>
+
+      {/* Featured Blog Slider */}
+      <section className="max-w-4xl mx-auto mb-12">
         <FeaturedBlogSlider />
       </section>
 
-      {/* Blog Post Grid */}
-      <section className="py-16 px-8 md:px-16 bg-gray-800">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Latest Articles
-        </h2>
-        <BlogGrid />
+      {/* Blog Grid */}
+      <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
+        {/* Blog cards */}
       </section>
-
-      {/* AI-Powered Blog Search Bar (Future-Ready) */}
-      <section className="py-16 bg-gray-900 text-center">
-        <h2 className="text-4xl font-bold">Smart Blog Search</h2>
-        <p className="text-xl text-gray-400 mt-4">
-          Coming soon: AI-driven search for instant legal insights.
-        </p>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white text-center py-6">
-        <p>
-          &copy; {new Date().getFullYear()} Open Esquire. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 }
 
-/* Featured Blog Post Slider */
+/* Featured Blog Slider */
 function FeaturedBlogSlider() {
+  const [index, setIndex] = useState(0);
   const featuredPosts = [
     {
       title: "Autonomous Lawyering Using OpenLaw.",
@@ -104,28 +148,104 @@ function FeaturedBlogSlider() {
     },
   ];
 
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % featuredPosts.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [featuredPosts.length]);
-
   return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-full max-w-3xl">
-        <div className="flex justify-center items-center">
+    <div className="relative bg-gray-800 rounded-xl p-4 md:p-8">
+      <div className="flex flex-col md:flex-row items-center gap-6">
+        {/* Image Container */}
+        <div className="w-full md:w-1/2">
           <Image
             src={featuredPosts[index].image}
             alt={featuredPosts[index].title}
             width={600}
             height={400}
+            className="rounded-lg object-cover w-full h-[200px] md:h-[300px]"
             unoptimized
-            className="object-contain"
           />
         </div>
+
+        {/* Content Container */}
+        <div className="w-full md:w-1/2 space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold text-blue-400">
+            {featuredPosts[index].title}
+          </h2>
+          <p className="text-sm md:text-base text-gray-300">
+            {featuredPosts[index].summary}
+          </p>
+          <Link
+            href={featuredPosts[index].link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm md:text-base"
+            >
+              Read More
+            </motion.button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-center mt-6 space-x-4">
+        <button
+          onClick={() =>
+            setIndex((prev) =>
+              prev === 0 ? featuredPosts.length - 1 : prev - 1
+            )
+          }
+          className="bg-gray-700 hover:bg-gray-600 p-2 rounded-full"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button
+          onClick={() =>
+            setIndex((prev) =>
+              prev === featuredPosts.length - 1 ? 0 : prev + 1
+            )
+          }
+          className="bg-gray-700 hover:bg-gray-600 p-2 rounded-full"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {featuredPosts.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`w-2 h-2 rounded-full ${
+              i === index ? "bg-blue-500" : "bg-gray-600"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );

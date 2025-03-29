@@ -39,15 +39,10 @@ export default function Home() {
       <section className="relative flex flex-col items-center justify-center text-center h-screen">
         <div className="mb-8">
           <Image
-            src={
-              process.env.NODE_ENV === "production"
-                ? "/open-esquire/images/logo.jpeg"
-                : "/images/logo.jpeg"
-            }
-            alt="Open Esquire Logo"
+            src="/images/logo.jpeg"
+            alt="Logo"
             width={200}
             height={200}
-            className="rounded-full"
             unoptimized
           />
         </div>

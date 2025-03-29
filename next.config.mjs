@@ -6,8 +6,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === "production" ? "/open-esquire" : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? "/open-esquire/" : "",
+  basePath: "",
+  assetPrefix: "",
   trailingSlash: true,
   webpack: (config) => {
     config.resolve.fallback = { fs: false };

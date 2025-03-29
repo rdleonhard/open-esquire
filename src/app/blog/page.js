@@ -85,30 +85,21 @@ function FeaturedBlogSlider() {
       title: "Autonomous Lawyering Using OpenLaw.",
       summary:
         "I can't say I legally represent the Ethereum community because the vast amount of ethical rules that guide my representation would apply to the millions of users around the world.",
-      image:
-        process.env.NODE_ENV === "production"
-          ? "/open-esquire/images/Autonomous-Lawyering.png"
-          : "/images/Autonomous-Lawyering.png",
+      image: "/images/Autonomous-Lawyering.png",
       link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
     },
     {
       title: "Uniswag: Selling Products on Uniswap",
       summary:
         "Who wants a ring? To recap, we wrote a series of blog posts about tokenizing products and using Uniswap's dynamic pricing method. Do you get why this model could be perfect for artisans?",
-      image:
-        process.env.NODE_ENV === "production"
-          ? "/open-esquire/images/lego.png"
-          : "/images/lego.png",
+      image: "/images/lego.png",
       link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
     },
     {
       title: "Decentralized Finance on the Ethereum Blockchain",
       summary:
         "Using these applications, attorneys could advise desperate clients on using decentralized financial strategies to circumvent the authority of dysfunctional governments and insolvent banks.",
-      image:
-        process.env.NODE_ENV === "production"
-          ? "/open-esquire/images/article.png"
-          : "/images/article.png",
+      image: "/images/article.png",
       link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
     },
   ];
@@ -147,30 +138,21 @@ function BlogGrid() {
       title: "Autonomous Lawyering Using OpenLaw.",
       summary:
         "I can't say I legally represent the Ethereum community because the vast amount of ethical rules that guide my representation would apply to the millions of users around the world.",
-      image:
-        process.env.NODE_ENV === "production"
-          ? "/open-esquire/images/Autonomous-Lawyering.png"
-          : "/images/Autonomous-Lawyering.png",
+      image: "/images/Autonomous-Lawyering.png",
       link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
     },
     {
       title: "Uniswag: Selling Products on Uniswap",
       summary:
         "Who wants a ring? To recap, we wrote a series of blog posts about tokenizing products and using Uniswap's dynamic pricing method. Do you get why this model could be perfect for artisans?",
-      image:
-        process.env.NODE_ENV === "production"
-          ? "/open-esquire/images/lego.png"
-          : "/images/lego.png",
+      image: "/images/lego.png",
       link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
     },
     {
       title: "Decentralized Finance on the Ethereum Blockchain",
       summary:
         "Using these applications, attorneys could advise desperate clients on using decentralized financial strategies to circumvent the authority of dysfunctional governments and insolvent banks.",
-      image:
-        process.env.NODE_ENV === "production"
-          ? "/open-esquire/images/article.png"
-          : "/images/article.png",
+      image: "/images/article.png",
       link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
     },
   ];

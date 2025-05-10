@@ -208,7 +208,10 @@ export default function Home() {
             X
           </Link>
           {" | "}
-          <Link href="#" className="text-blue-400 hover:underline">
+          <Link
+            href="mailto:openlawesq@gmail.com"
+            className="text-blue-400 hover:underline"
+          >
             Contact
           </Link>
         </div>

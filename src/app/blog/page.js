@@ -1,249 +1,196 @@
 // app/blog/page.js (or pages/blog.js if using the pages directory)
 "use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useMemo, useState } from "react";
+import Eyebrow from "../../components/Eyebrow";
 
 export default function Blog() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const posts = useMemo(
+    () => [
+      {
+        title: "Autonomous Lawyering Using OpenLaw",
+        summary:
+          "Ethics, scale, and what autonomy could look like in a world with open networks.",
+        link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
+        tag: "Strategy",
+      },
+      {
+        title: "Uniswag: Selling Products on Uniswap",
+        summary:
+          "A practical look at tokenized products and AMM mechanics for real commerce.",
+        link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
+        tag: "Web3",
+      },
+      {
+        title: "Decentralized Finance on the Ethereum Blockchain",
+        summary:
+          "How decentralized applications change legal advice and financial access globally.",
+        link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
+        tag: "Research",
+      },
+    ],
+    []
+  );
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white px-4 md:px-6">
-      {/* Navigation */}
-      <nav className="p-6 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-white font-bold text-2xl hover:text-blue-400 transition"
-        >
-          Open Ξsquire
-        </Link>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d={
-                mobileMenuOpen
-                  ? "M6 18L18 6M6 6l12 12"
-                  : "M4 6h16M4 12h16M4 18h16"
-              }
-            ></path>
-          </svg>
-        </button>
-
-        {/* Desktop menu */}
-        <div className="hidden md:flex space-x-4">
-          <Link href="/" className="text-gray-300 hover:text-white transition">
-            Home
-          </Link>
-          <Link
-            href="/bio"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Bio
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Blog
-          </Link>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
-            disabled
-          >
-            App - Coming Soon
-          </button>
+    <div className="bg-white">
+      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+        <div className="absolute inset-0 bg-hero-radial" />
+        <div className="absolute inset-0 bg-hero-mesh opacity-80" />
+        <div className="absolute inset-0 opacity-[0.28] [background-image:theme(backgroundImage.grid)] [background-size:48px_48px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink-950/80" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <div className="max-w-3xl">
+            <Eyebrow dark className="text-gold-300/85">
+              Insights
+            </Eyebrow>
+            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight md:text-5xl">
+              Writing on law, technology, and emerging markets.
+            </h1>
+            <p className="mt-4 text-lg leading-7 text-slate-200/80">
+              Selected publications and notes aimed at founders, builders, and
+              practitioners.
+            </p>
+          </div>
         </div>
-
-        {/* Mobile menu */}
-        <div
-          className={`${
-            mobileMenuOpen ? "flex" : "hidden"
-          } md:hidden absolute top-20 left-0 right-0 flex-col items-center bg-gray-900 py-4 space-y-4 z-50`}
-        >
-          <Link href="/" className="text-gray-300 hover:text-white transition">
-            Home
-          </Link>
-          <Link
-            href="/bio"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Bio
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Blog
-          </Link>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
-            disabled
-          >
-            App - Coming Soon
-          </button>
-        </div>
-      </nav>
-
-      {/* Blog Header */}
-      <header className="py-8 md:py-16 text-center">
-        <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mb-4">
-          Legal Tech Insights
-        </h1>
-        <p className="text-lg md:text-xl text-gray-400">
-          Exploring the intersection of law, technology, and innovation
-        </p>
-      </header>
-
-      {/* Featured Blog Slider */}
-      <section className="max-w-4xl mx-auto mb-12">
-        <FeaturedBlogSlider />
       </section>
 
-      {/* Blog Grid */}
-      <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
-        {/* Blog cards */}
+      <section className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-16">
+        <div className="grid gap-6 md:grid-cols-2">
+          <FeaturedPostSlider posts={posts} />
+          <div className="rounded-2xl border border-slate-200 bg-sand-50 p-8 shadow-sm">
+            <Eyebrow>Need help applying this?</Eyebrow>
+            <h2 className="mt-4 font-serif text-2xl font-semibold text-slate-900">
+              Turn insight into action.
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-700">
+              If a post relates to your situation, send a short note with your
+              timeline and context. We’ll respond with next steps.
+            </p>
+            <a
+              href="mailto:openlawesq@gmail.com"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-ink-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-ink-900"
+            >
+              Email to get started
+            </a>
+          </div>
+        </div>
+
+        <Eyebrow className="mt-14">Library</Eyebrow>
+        <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+          Featured writing
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+          A few representative pieces. More available upon request.
+        </p>
+
+        <div className="mt-8">
+          <PostGrid posts={posts} />
+        </div>
       </section>
     </div>
   );
 }
 
+function GradientThumb() {
+  return (
+    <div className="relative h-44 w-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
+      <div className="absolute inset-0 bg-[radial-gradient(600px_220px_at_10%_10%,rgba(217,164,65,0.35),transparent_55%),radial-gradient(600px_220px_at_85%_30%,rgba(99,102,241,0.25),transparent_60%)]" />
+      <div className="absolute inset-0 opacity-30 [background-image:theme(backgroundImage.grid)] [background-size:44px_44px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink-950/40" />
+    </div>
+  );
+}
+
 /* Featured Blog Slider */
-function FeaturedBlogSlider() {
+function FeaturedPostSlider({ posts }) {
   const [index, setIndex] = useState(0);
-  const featuredPosts = [
-    {
-      title: "Autonomous Lawyering Using OpenLaw.",
-      summary:
-        "I can't say I legally represent the Ethereum community because the vast amount of ethical rules that guide my representation would apply to the millions of users around the world.",
-      image: "/images/Autonomous-Lawyering.png",
-      link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
-    },
-    {
-      title: "Uniswag: Selling Products on Uniswap",
-      summary:
-        "Who wants a ring? To recap, we wrote a series of blog posts about tokenizing products and using Uniswap's dynamic pricing method. Do you get why this model could be perfect for artisans?",
-      image: "/images/lego.png",
-      link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
-    },
-    {
-      title: "Decentralized Finance on the Ethereum Blockchain",
-      summary:
-        "Using these applications, attorneys could advise desperate clients on using decentralized financial strategies to circumvent the authority of dysfunctional governments and insolvent banks.",
-      image: "/images/article.png",
-      link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
-    },
-  ];
 
   return (
-    <div className="relative bg-gray-800 rounded-xl p-4 md:p-8">
-      <div className="flex flex-col md:flex-row items-center gap-6">
-        {/* Image Container */}
-        <div className="w-full md:w-1/2">
-          <Image
-            src={featuredPosts[index].image}
-            alt={featuredPosts[index].title}
-            width={600}
-            height={400}
-            className="rounded-lg object-cover w-full h-[200px] md:h-[300px]"
-            unoptimized
-          />
-        </div>
+    <div className="rounded-2xl border border-white/10 bg-ink-950 p-8 text-white shadow-soft-xl">
+      <div className="text-xs font-semibold uppercase tracking-widest text-slate-200/70">
+        Featured
+      </div>
+      <div className="mt-5">
+        <GradientThumb />
+      </div>
 
-        {/* Content Container */}
-        <div className="w-full md:w-1/2 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold text-blue-400">
-            {featuredPosts[index].title}
-          </h2>
-          <p className="text-sm md:text-base text-gray-300">
-            {featuredPosts[index].summary}
-          </p>
-          <Link
-            href={featuredPosts[index].link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block"
+      <div className="mt-6 flex items-center gap-2">
+        <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-slate-100 ring-1 ring-white/10">
+          {posts[index].tag}
+        </span>
+      </div>
+
+      <h3 className="mt-4 font-serif text-2xl font-semibold leading-snug">
+        {posts[index].title}
+      </h3>
+      <p className="mt-3 text-sm leading-6 text-slate-200/80">
+        {posts[index].summary}
+      </p>
+
+      <div className="mt-6 flex items-center justify-between">
+        <Link
+          href={posts[index].link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-gold-500 px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
+        >
+          Read
+          <span aria-hidden>↗</span>
+        </Link>
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              setIndex((prev) => (prev === 0 ? posts.length - 1 : prev - 1))
+            }
+            className="rounded-full bg-white/10 p-2 ring-1 ring-white/10 transition hover:bg-white/15"
+            aria-label="Previous"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm md:text-base"
-            >
-              Read More
-            </motion.button>
-          </Link>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 19l-7-7 7-7"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setIndex((prev) => (prev === posts.length - 1 ? 0 : prev + 1))
+            }
+            className="rounded-full bg-white/10 p-2 ring-1 ring-white/10 transition hover:bg-white/15"
+            aria-label="Next"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 5l7 7-7 7"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-center mt-6 space-x-4">
-        <button
-          onClick={() =>
-            setIndex((prev) =>
-              prev === 0 ? featuredPosts.length - 1 : prev - 1
-            )
-          }
-          className="bg-gray-700 hover:bg-gray-600 p-2 rounded-full"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          onClick={() =>
-            setIndex((prev) =>
-              prev === featuredPosts.length - 1 ? 0 : prev + 1
-            )
-          }
-          className="bg-gray-700 hover:bg-gray-600 p-2 rounded-full"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Dots Indicator */}
-      <div className="flex justify-center mt-4 space-x-2">
-        {featuredPosts.map((_, i) => (
+      <div className="mt-5 flex gap-2">
+        {posts.map((_, i) => (
           <button
             key={i}
+            type="button"
             onClick={() => setIndex(i)}
-            className={`w-2 h-2 rounded-full ${
-              i === index ? "bg-blue-500" : "bg-gray-600"
-            }`}
+            className={[
+              "h-1.5 w-10 rounded-full transition",
+              i === index ? "bg-gold-500" : "bg-white/15 hover:bg-white/25",
+            ].join(" ")}
+            aria-label={`Go to item ${i + 1}`}
           />
         ))}
       </div>
@@ -251,52 +198,37 @@ function FeaturedBlogSlider() {
   );
 }
 
-/* Blog Grid Component */
-function BlogGrid() {
-  const blogPosts = [
-    {
-      title: "Autonomous Lawyering Using OpenLaw.",
-      summary:
-        "I can't say I legally represent the Ethereum community because the vast amount of ethical rules that guide my representation would apply to the millions of users around the world.",
-      image: "/images/Autonomous-Lawyering.png",
-      link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
-    },
-    {
-      title: "Uniswag: Selling Products on Uniswap",
-      summary:
-        "Who wants a ring? To recap, we wrote a series of blog posts about tokenizing products and using Uniswap's dynamic pricing method. Do you get why this model could be perfect for artisans?",
-      image: "/images/lego.png",
-      link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
-    },
-    {
-      title: "Decentralized Finance on the Ethereum Blockchain",
-      summary:
-        "Using these applications, attorneys could advise desperate clients on using decentralized financial strategies to circumvent the authority of dysfunctional governments and insolvent banks.",
-      image: "/images/article.png",
-      link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
-    },
-  ];
-
+function PostGrid({ posts }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {blogPosts.map((post, index) => (
-        <Link key={index} href={post.link}>
+      {posts.map((post, index) => (
+        <Link
+          key={index}
+          href={post.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <motion.div
             whileHover={{
               scale: 1.05,
-              boxShadow: "0px 0px 15px rgba(0, 204, 255, 0.6)",
+              boxShadow: "0px 18px 45px -30px rgba(2, 6, 23, 0.45)",
             }}
-            className="relative cursor-pointer group transform transition duration-300 hover:scale-105 bg-gray-900 p-6 rounded-lg border border-gray-700 shadow-lg"
+            className="group relative cursor-pointer rounded-2xl border border-slate-200 bg-white p-6 shadow-soft-xl transition"
           >
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-40 object-cover rounded-lg shadow-lg"
-            />
-            <h3 className="text-2xl font-bold mt-4">{post.title}</h3>
-            <p className="text-gray-400 mt-2">{post.summary}</p>
-            <span className="text-blue-400 mt-4 opacity-0 group-hover:opacity-100 transition">
-              Read More →
+            <div className="flex items-center gap-2">
+              <span className="rounded-full bg-sand-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                {post.tag}
+              </span>
+            </div>
+            <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900">
+              {post.title}
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              {post.summary}
+            </p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition group-hover:text-slate-700">
+              Read
+              <span aria-hidden>↗</span>
             </span>
           </motion.div>
         </Link>

@@ -1,215 +1,103 @@
 // app/bio/page.js (or pages/bio.js if using the pages directory)
 "use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import Eyebrow from "../../components/Eyebrow";
 
 export default function Bio() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
-    <div className="min-h-screen bg-gray-900 text-white px-4 md:px-6">
-      {/* Navigation */}
-      <nav className="p-6 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-white font-bold text-2xl hover:text-blue-400 transition"
-        >
-          Open Ξsquire
-        </Link>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d={
-                mobileMenuOpen
-                  ? "M6 18L18 6M6 6l12 12"
-                  : "M4 6h16M4 12h16M4 18h16"
-              }
-            ></path>
-          </svg>
-        </button>
-
-        {/* Desktop menu */}
-        <div className="hidden md:flex space-x-4">
-          <Link href="/" className="text-gray-300 hover:text-white transition">
-            Home
-          </Link>
-          <Link
-            href="/bio"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Bio
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Blog
-          </Link>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
-            disabled
-          >
-            App - Coming Soon
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        <div
-          className={`${
-            mobileMenuOpen ? "flex" : "hidden"
-          } md:hidden absolute top-20 left-0 right-0 flex-col items-center bg-gray-900 py-4 space-y-4 z-50`}
-        >
-          <Link href="/" className="text-gray-300 hover:text-white transition">
-            Home
-          </Link>
-          <Link
-            href="/bio"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Bio
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Blog
-          </Link>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
-            disabled
-          >
-            App - Coming Soon
-          </button>
-        </div>
-      </nav>
-
-      {/* Bio Header */}
-      <header className="py-8 md:py-16 text-center">
-        <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mb-4">
-          About Open Ξsquire
-        </h1>
-        <p className="text-lg md:text-xl text-gray-400">
-          Pioneering Legal Engineering & Blockchain Law
-        </p>
-      </header>
-
-      {/* Founder Section */}
-      <section className="max-w-4xl mx-auto mb-12">
-        <div className="flex flex-col md:flex-row items-center gap-8 bg-gray-800 rounded-xl p-6 md:p-8">
-          {/* Image Container */}
-          <div className="w-full md:w-1/3">
-            <Image
-              src="/images/rob-leonhard.jpeg"
-              alt="Rob Leonhard"
-              width={160}
-              height={160}
-              className="rounded-lg w-40 h-40 md:w-48 md:h-48 object-cover mx-auto"
-              unoptimized
-            />
-          </div>
-
-          {/* Bio Content */}
-          <div className="w-full md:w-2/3 space-y-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-blue-400 text-center md:text-left">
+    <div className="bg-white">
+      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+        <div className="absolute inset-0 bg-hero-radial" />
+        <div className="absolute inset-0 bg-hero-mesh opacity-80" />
+        <div className="absolute inset-0 opacity-[0.28] [background-image:theme(backgroundImage.grid)] [background-size:48px_48px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink-950/80" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <div className="max-w-3xl">
+            <Eyebrow dark className="text-gold-300/85">
+              Attorney bio
+            </Eyebrow>
+            <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight md:text-5xl">
               Rob Leonhard
-            </h2>
-            <p className="text-sm md:text-base text-gray-300">
-              Rob Leonhard is a legal engineer and blockchain lawyer based in
-              Pittsburgh, PA. He specializes in smart contract development and
-              decentralized legal frameworks.
+            </h1>
+            <p className="mt-4 text-lg leading-7 text-slate-200/80">
+              Legal engineering and blockchain-focused counsel for teams
+              operating at the frontier—delivered with clarity and discipline.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Company History */}
-      <section className="max-w-4xl mx-auto mb-12">
-        <div className="bg-gray-800 rounded-xl p-6 md:p-8 space-y-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-blue-400">
-            Our Story
-          </h2>
-          <div className="space-y-4 text-sm md:text-base text-gray-300">
-            <p>
-              Open Ξsquire was conceptualized by elite legal engineer Ross
-              Campbell and launched out of Bushwick in Brooklyn, NY, creating
-              the first instance of a hybrid LLC/DAO.
-            </p>
-            <p>
-              Open Ξsquire began tokenizing products on Uniswap v1, most notably
-              the Uniring, which was the first to integrate an NFC chip into the
-              blockchain.
-            </p>
+      <section className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-16">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="md:col-span-1">
+            <div className="rounded-2xl border border-slate-200 bg-sand-50 p-6">
+              <Eyebrow>Summary</Eyebrow>
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
+                <li>Blockchain law and emerging technology strategy</li>
+                <li>Contract drafting, negotiation, and risk allocation</li>
+                <li>Compliance-aware product and go-to-market guidance</li>
+              </ul>
+              <a
+                href="mailto:openlawesq@gmail.com"
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-ink-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-ink-900"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+
+          <div className="md:col-span-2">
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h2 className="font-serif text-2xl font-semibold text-slate-900">
+                Profile
+              </h2>
+              <div className="mt-4 space-y-4 text-sm leading-6 text-slate-700">
+                <p>
+                  Rob Leonhard is a legal engineer and blockchain lawyer based in
+                  Pittsburgh, PA. He supports builders and operators with
+                  pragmatic legal strategy and execution.
+                </p>
+                <p>
+                  Open Esquire was conceptualized by legal engineer Ross Campbell
+                  and launched out of Bushwick in Brooklyn, NY, creating the first
+                  instance of a hybrid LLC/DAO. Open Esquire began tokenizing
+                  products on Uniswap v1, most notably the Uniring, which was the
+                  first to integrate an NFC chip into the blockchain.
+                </p>
+                <p>
+                  Mission: to modernize legal services through rigorous
+                  engineering discipline, clear writing, and technology-aware
+                  counsel.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Mission Statement */}
-      <section className="max-w-4xl mx-auto mb-12">
-        <motion.div
-          className="bg-gray-800 rounded-xl p-6 md:p-8"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-blue-400 mb-4">
-            Our Mission
+      <section className="bg-sand-100">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+          <Eyebrow>History</Eyebrow>
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+            Experience timeline
           </h2>
-          <p className="text-sm md:text-base text-gray-300">
-            To revolutionize legal services through blockchain technology and
-            artificial intelligence, making legal engineering accessible and
-            efficient for the next generation of legal professionals.
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+            A quick, high-level snapshot of the firm’s evolution and focus over
+            time.
           </p>
-        </motion.div>
+          <div className="mt-10">
+            <Timeline />
+          </div>
+        </div>
       </section>
 
-      {/* Return Home Button */}
-      <div className="flex justify-center mt-6">
-        <Link href="/">
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0px 0px 15px rgba(0, 153, 255, 0.8)",
-            }}
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-          >
-            Return Home
-          </motion.button>
-        </Link>
-      </div>
-
-      {/* Legal Tech Evolution Timeline */}
-      <section className="py-16 px-8 md:px-16">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Our Evolution in Legal Engineering
-        </h2>
-        <Timeline />
+      <section className="relative overflow-hidden bg-ink-950 grain">
+        <div className="absolute inset-0 bg-hero-mesh opacity-40" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+          <AnimatedQuotes />
+        </div>
       </section>
-
-      {/* Animated Quote Block */}
-      <section className="py-16 bg-gray-900 text-center">
-        <AnimatedQuotes />
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white text-center py-6">
-        <p>
-          &copy; {new Date().getFullYear()} Open Ξsquire. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 }
@@ -236,20 +124,27 @@ function Timeline() {
   ];
 
   return (
-    <div className="relative max-w-4xl mx-auto">
+    <div className="relative mx-auto max-w-4xl border-l border-slate-200 pl-8 md:pl-10">
       {timelineData.map((item, index) => (
         <motion.div
           key={index}
           whileHover={{
-            scale: 1.05,
-            boxShadow: "0px 0px 10px rgba(0, 204, 255, 0.6)",
+            scale: 1.01,
+            boxShadow: "0px 18px 45px -30px rgba(2, 6, 23, 0.35)",
           }}
-          className="flex items-center mb-8 bg-gray-800 p-4 rounded-lg border border-gray-700"
+          className="relative mb-5 rounded-2xl border border-slate-200 bg-white p-6 transition"
         >
-          <div className="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
-          <div className="text-lg">
-            <span className="font-bold text-blue-300">{item.year}:</span>{" "}
-            {item.text}
+          <span className="absolute -left-[9px] top-8 hidden h-3 w-3 rounded-full border-2 border-white bg-gold-500 shadow-glow-sm md:block" />
+          <div className="flex items-start gap-4">
+            <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-gold-500 md:hidden" />
+            <div>
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                {item.year}
+              </div>
+              <div className="mt-2 text-sm leading-6 text-slate-700">
+                {item.text}
+              </div>
+            </div>
           </div>
         </motion.div>
       ))}
@@ -281,7 +176,7 @@ function AnimatedQuotes() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.5 }}
-      className="text-2xl font-bold text-gray-300"
+      className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-10 text-center font-serif text-2xl font-semibold leading-snug text-white md:text-3xl"
     >
       {quotes[quoteIndex]}
     </motion.div>

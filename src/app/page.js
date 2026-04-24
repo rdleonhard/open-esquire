@@ -1,237 +1,345 @@
-// app/page.js (or pages/index.js for "pages" directory setup)
 "use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useState } from "react";
+import Eyebrow from "../components/Eyebrow";
+import ElegantLogo from "../components/ElegantLogo";
 
-export default function Home() {
-  // Add a mobile menu state
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+function MarqueeStrip() {
+  const items = [
+    "Commercial contracts",
+    "Token launches",
+    "DAO governance",
+    "Risk memos",
+    "Regulatory mapping",
+    "Product counsel",
+  ];
+  const doubled = [...items, ...items];
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Navigation */}
-      <nav className="p-6 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-white font-bold text-2xl hover:text-blue-400 transition"
-        >
-          Open Ξsquire
-        </Link>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+    <div className="relative border-y border-white/10 bg-ink-900/40 py-3 overflow-hidden">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-ink-950 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-ink-950 to-transparent" />
+      <div className="flex w-max animate-marquee gap-12 px-6">
+        {doubled.map((label, i) => (
+          <span
+            key={`${label}-${i}`}
+            className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-slate-300/70"
           >
-            <path
-              d={
-                mobileMenuOpen
-                  ? "M6 18L18 6M6 6l12 12"
-                  : "M4 6h16M4 12h16M4 18h16"
-              }
-            ></path>
-          </svg>
-        </button>
-
-        {/* Desktop menu */}
-        <div className="hidden md:flex space-x-4">
-          <Link href="/" className="text-gray-300 hover:text-white transition">
-            Home
-          </Link>
-          <Link
-            href="/bio"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Bio
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Blog
-          </Link>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
-            disabled
-          >
-            App - Coming Soon
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        <div
-          className={`${
-            mobileMenuOpen ? "flex" : "hidden"
-          } md:hidden absolute top-20 left-0 right-0 flex-col items-center bg-gray-900 py-4 space-y-4 z-50`}
-        >
-          <Link href="/" className="text-gray-300 hover:text-white transition">
-            Home
-          </Link>
-          <Link
-            href="/bio"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Bio
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-300 hover:text-white transition"
-          >
-            Blog
-          </Link>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition cursor-not-allowed"
-            disabled
-          >
-            App - Coming Soon
-          </button>
-        </div>
-      </nav>
-
-      {/* Hero Section with 3D Animated Text */}
-      <section className="relative flex flex-col items-center justify-center text-center min-h-screen px-4">
-        <div className="mb-8">
-          <Image
-            src="/images/logo.jpeg"
-            alt="Logo"
-            width={200}
-            height={200}
-            unoptimized
-          />
-        </div>
-        <motion.h1
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
-        >
-          The Future of Law is Here
-        </motion.h1>
-        <p className="text-lg md:text-xl text-gray-400 mt-4 px-4">
-          AI-powered legal engineering. Blockchain-driven compliance. Automation
-          that changes everything.
-        </p>
-        <div className="mt-8">
-          <Link href="/bio">
-            <motion.button
-              whileHover={{
-                scale: 1.1,
-                boxShadow: "0px 0px 15px rgba(0, 153, 255, 0.7)",
-              }}
-              className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-            >
-              Learn More
-            </motion.button>
-          </Link>
-        </div>
-
-        {/* Glowing Grid Background */}
-        <div className="absolute inset-0 -z-10 bg-grid-white/[0.2] bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)]"></div>
-      </section>
-
-      {/* Legal Tech Service Highlights */}
-      <section className="py-20 px-4 md:px-16 bg-gray-800">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">
-          Cutting-Edge Legal Tech
-        </h2>
-        <p className="text-lg md:text-xl text-gray-400 text-center mt-4">
-          We're pioneering the future of law with AI, automation, and
-          blockchain.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <ServiceCard
-            title="AI Contract Analysis"
-            description="AI-driven document review ensures faster, more accurate legal drafting."
-          />
-          <ServiceCard
-            title="Blockchain Law"
-            description="Smart contracts and decentralized legal frameworks redefine compliance."
-          />
-          <ServiceCard
-            title="Automated Compliance"
-            description="Legal automation streamlines regulatory adherence with real-time updates."
-          />
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-16 text-center bg-gray-900">
-        <h2 className="text-4xl font-bold text-gray-100">
-          Engineering Law for the Future
-        </h2>
-        <p className="text-xl text-gray-400 mt-4">
-          Join the revolution in AI-driven legal services.
-        </p>
-        <div className="mt-6">
-          <Link href="/blog">
-            <motion.button
-              whileHover={{
-                scale: 1.1,
-                boxShadow: "0px 0px 20px rgba(255, 69, 255, 0.8)",
-              }}
-              className="bg-purple-500 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-            >
-              Explore Our Insights
-            </motion.button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white text-center py-6 px-4">
-        <p className="text-sm md:text-base">
-          &copy; {new Date().getFullYear()} Open Ξsquire. All rights reserved.
-        </p>
-        <div className="mt-2 space-x-2 text-sm md:text-base">
-          <Link
-            href="https://github.com/rdleonhard/OpenEsquire/blob/main/PrivacyPolicy.md"
-            className="text-blue-400 hover:underline"
-          >
-            Privacy Policy
-          </Link>
-          {" | "}
-          <Link
-            href="https://x.com/ethlawyer"
-            className="text-blue-400 hover:underline"
-          >
-            X
-          </Link>
-          {" | "}
-          <Link
-            href="mailto:openlawesq@gmail.com"
-            className="text-blue-400 hover:underline"
-          >
-            Contact
-          </Link>
-        </div>
-      </footer>
+            {label}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
 
-/* Service Card Component */
-function ServiceCard({ title, description }) {
+function Stat({ label, value }) {
   return (
     <motion.div
-      whileHover={{
-        scale: 1.05,
-        boxShadow: "0px 0px 15px rgba(0, 204, 255, 0.6)",
-      }}
-      className="bg-gray-900 p-4 md:p-6 rounded-lg shadow-lg border border-gray-700"
+      variants={fadeUp}
+      className="group rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 ring-1 ring-white/[0.04] transition hover:border-gold-500/25 hover:bg-white/[0.06]"
     >
-      <h3 className="text-xl md:text-2xl font-bold text-blue-400">{title}</h3>
-      <p className="text-sm md:text-base text-gray-300 mt-2">{description}</p>
+      <div className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-300/70">
+        {label}
+      </div>
+      <div className="mt-2 font-serif text-2xl font-semibold text-white">
+        {value}
+      </div>
     </motion.div>
+  );
+}
+
+function PracticeCard({ title, children, n }) {
+  return (
+    <motion.article
+      variants={fadeUp}
+      className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-7 shadow-soft-xl transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl"
+    >
+      <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gold-500/10 blur-3xl transition group-hover:bg-gold-500/15" />
+      <div className="font-mono text-[10px] font-semibold text-gold-700/90">
+        {String(n).padStart(2, "0")}
+      </div>
+      <h3 className="mt-3 font-serif text-xl font-semibold tracking-tight text-slate-900">
+        {title}
+      </h3>
+      <p className="mt-3 text-sm leading-relaxed text-slate-600">{children}</p>
+      <div className="mt-5 h-px w-12 bg-gradient-to-r from-gold-500 to-transparent transition group-hover:w-20" />
+    </motion.article>
+  );
+}
+
+export default function Home() {
+  return (
+    <div>
+      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+        <div className="absolute inset-0 bg-hero-radial" />
+        <div className="absolute inset-0 bg-hero-mesh opacity-90" />
+        <div className="absolute inset-0 opacity-[0.35] [background-image:theme(backgroundImage.grid)] [background-size:56px_56px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink-950/30 to-ink-950" />
+
+        <div className="relative z-10 mx-auto max-w-6xl px-4 pb-6 pt-14 md:px-6 md:pb-10 md:pt-20">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={stagger}
+              className="max-w-2xl"
+            >
+              <motion.div variants={fadeUp}>
+                <Eyebrow dark className="text-gold-300/85">
+                  Technology · Blockchain · Regulatory strategy
+                </Eyebrow>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="mt-5 font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-balance md:text-6xl md:leading-[1.06]"
+              >
+                Counsel that matches the{" "}
+                <span
+                  className="inline-block bg-gradient-to-r from-gold-200 via-gold-400 to-amber-300 bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  velocity
+                </span>{" "}
+                of your business.
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="mt-6 max-w-xl text-base leading-relaxed text-slate-200/85 md:text-lg"
+              >
+                Attorney-led strategy for founders and operators: contracts,
+                digital-asset mechanics, and compliance you can actually ship
+                against—without sacrificing judgment.
+              </motion.p>
+
+              <motion.div
+                variants={fadeUp}
+                className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+              >
+                <a
+                  href="mailto:openlawesq@gmail.com"
+                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-glow ring-1 ring-gold-300/50 transition hover:brightness-105"
+                >
+                  Request a consult
+                </a>
+                <Link
+                  href="/bio"
+                  className="inline-flex items-center justify-center rounded-full bg-white/10 px-7 py-3.5 text-sm font-semibold text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                >
+                  Credentials & story
+                </Link>
+              </motion.div>
+
+              <motion.div
+                className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-40px" }}
+                variants={stagger}
+              >
+                <Stat label="Focus" value="Web3 & tech" />
+                <Stat label="Style" value="Precise memos" />
+                <Stat label="Delivery" value="Fast cycles" />
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              className="relative hidden justify-center lg:flex"
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="h-[min(100%,420px)] w-[min(100%,420px)] rounded-full bg-gold-500/12 blur-[100px]" />
+              </div>
+              <div className="relative border-gradient rounded-[2rem] p-10 shadow-glow">
+                <div className="absolute inset-0 rounded-[2rem] bg-[length:200%_100%] animate-shimmer bg-gold-shine opacity-40" />
+                <ElegantLogo
+                  priority
+                  className="relative mx-auto h-44 w-auto max-w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.45)] md:h-52"
+                />
+                <p className="relative mt-8 max-w-xs text-center font-serif text-lg leading-snug text-slate-200/90">
+                  “Clarity is a competitive advantage—especially under pressure.”
+                </p>
+                <div className="relative mt-6 flex justify-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
+                  <span>Pittsburgh</span>
+                  <span className="text-gold-400/80">·</span>
+                  <span>Nationwide</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        <MarqueeStrip />
+      </section>
+
+      <section className="border-b border-slate-200/80 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-4 py-10 md:px-6">
+          <Eyebrow>Trusted by teams shipping at the frontier</Eyebrow>
+          <div className="flex flex-wrap gap-x-10 gap-y-3 font-mono text-xs font-medium uppercase tracking-wider text-slate-500">
+            <span>Protocols</span>
+            <span>Marketplaces</span>
+            <span>Funds</span>
+            <span>Founders</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <Eyebrow>Practice areas</Eyebrow>
+            <h2 className="mt-4 font-serif text-3xl font-semibold tracking-tight text-balance text-slate-900 md:text-5xl md:leading-tight">
+              Where law meets product, markets, and code.
+            </h2>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Structured advice for decisions that cannot wait: launches,
+              partnerships, token design, and the memos that keep boards aligned.
+            </p>
+          </div>
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-2 self-start font-mono text-xs font-semibold uppercase tracking-wider text-slate-900 md:self-auto"
+          >
+            Read insights
+            <span className="transition group-hover:translate-x-0.5" aria-hidden>
+              →
+            </span>
+          </Link>
+        </div>
+
+        <motion.div
+          className="mt-14 grid grid-cols-1 gap-7 md:grid-cols-3"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          <PracticeCard n={1} title="Commercial & product contracts">
+            Terms that reflect the deal: remedies, IP, confidentiality, and
+            liability tuned to how you actually operate.
+          </PracticeCard>
+          <PracticeCard n={2} title="Blockchain & digital assets">
+            Mechanics-first guidance on launches, governance, and on-chain
+            economics—paired with practical regulatory framing.
+          </PracticeCard>
+          <PracticeCard n={3} title="Regulatory & compliance strategy">
+            Risk maps your team can execute: policies, controls, and escalation
+            paths that match your shipping cadence.
+          </PracticeCard>
+        </motion.div>
+      </section>
+
+      <section className="relative overflow-hidden bg-sand-100">
+        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-gold-200/30 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+          <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
+            <div>
+              <Eyebrow>How we work</Eyebrow>
+              <h2 className="mt-4 font-serif text-3xl font-semibold tracking-tight text-slate-900 md:text-5xl md:leading-tight">
+                Serious work product. Zero theatrics.
+              </h2>
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-slate-600 md:text-base">
+                You get decision-ready options, crisp writing, and direct access
+                to judgment—not a parade of juniors or vague “it depends.”
+              </p>
+            </div>
+            <div className="grid gap-4">
+              {[
+                {
+                  t: "Structured risk memos",
+                  d: "Plain English, citations where they matter, and a recommended path.",
+                },
+                {
+                  t: "Negotiation that preserves the deal",
+                  d: "Redlines and fallback positions aligned to your commercial goals.",
+                },
+                {
+                  t: "Operator-first cadence",
+                  d: "Advice timed to milestones: fundraising, launches, and diligence windows.",
+                },
+              ].map((x, idx) => (
+                <motion.div
+                  key={x.t}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.06, duration: 0.45 }}
+                  className="rounded-2xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-glow-sm" />
+                    <div>
+                      <div className="font-semibold text-slate-900">{x.t}</div>
+                      <div className="mt-2 text-sm leading-relaxed text-slate-600">
+                        {x.d}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+        <div className="absolute inset-0 bg-hero-mesh opacity-50" />
+        <div className="absolute inset-0 opacity-25 [background-image:theme(backgroundImage.grid)] [background-size:48px_48px]" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-10 shadow-glow md:p-16">
+            <div className="grid gap-10 md:grid-cols-[1.35fr_1fr] md:items-center">
+              <div>
+                <Eyebrow dark className="text-gold-300/90">
+                  Next step
+                </Eyebrow>
+                <h2 className="mt-4 font-serif text-3xl font-semibold tracking-tight text-balance md:text-4xl md:leading-tight">
+                  Tell us what you are building—and your timeline.
+                </h2>
+                <p className="mt-5 max-w-lg text-sm leading-relaxed text-slate-200/80 md:text-base">
+                  A short email with context is enough to start. We will reply
+                  with availability and suggested next steps.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-stretch lg:flex-row lg:justify-end">
+                <a
+                  href="mailto:openlawesq@gmail.com"
+                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-glow-sm ring-1 ring-gold-300/45 transition hover:brightness-105"
+                >
+                  Email to get started
+                </a>
+                <Link
+                  href="/bio"
+                  className="inline-flex items-center justify-center rounded-full bg-white/10 px-7 py-3.5 text-sm font-semibold text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                >
+                  View bio
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

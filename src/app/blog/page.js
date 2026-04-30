@@ -35,11 +35,9 @@ export default function Blog() {
 
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+      <section className="relative overflow-hidden border-b border-ink-800 bg-ink-950 text-white">
         <div className="absolute inset-0 bg-hero-radial" />
-        <div className="absolute inset-0 bg-hero-mesh opacity-80" />
-        <div className="absolute inset-0 opacity-[0.28] [background-image:theme(backgroundImage.grid)] [background-size:48px_48px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink-950/80" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gold-500/20" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <div className="max-w-3xl">
             <Eyebrow dark className="text-gold-300/85">
@@ -95,10 +93,11 @@ export default function Blog() {
 
 function GradientThumb() {
   return (
-    <div className="relative h-44 w-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
-      <div className="absolute inset-0 bg-[radial-gradient(600px_220px_at_10%_10%,rgba(217,164,65,0.35),transparent_55%),radial-gradient(600px_220px_at_85%_30%,rgba(99,102,241,0.25),transparent_60%)]" />
-      <div className="absolute inset-0 opacity-30 [background-image:theme(backgroundImage.grid)] [background-size:44px_44px]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink-950/40" />
+    <div className="relative h-44 w-full overflow-hidden rounded-xl border border-white/10 bg-ink-900">
+      <div className="absolute inset-x-8 top-1/2 h-px bg-gold-500/40" />
+      <div className="absolute left-8 top-8 font-serif text-6xl text-gold-300/25">
+        OE
+      </div>
     </div>
   );
 }
@@ -209,11 +208,8 @@ function PostGrid({ posts }) {
           rel="noopener noreferrer"
         >
           <motion.div
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 18px 45px -30px rgba(2, 6, 23, 0.45)",
-            }}
-            className="group relative cursor-pointer rounded-2xl border border-slate-200 bg-white p-6 shadow-soft-xl transition"
+            whileHover={{ y: -3 }}
+            className="group relative cursor-pointer rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-slate-300 hover:shadow-md"
           >
             <div className="flex items-center gap-2">
               <span className="rounded-full bg-sand-100 px-3 py-1 text-xs font-semibold text-slate-700">

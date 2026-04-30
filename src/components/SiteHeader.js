@@ -18,7 +18,7 @@ function NavLink({ href, children }) {
     >
       {children}
       {active ? (
-        <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
+        <span className="absolute -bottom-1 left-0 right-0 h-px bg-gold-400/80" />
       ) : null}
     </Link>
   );
@@ -55,10 +55,10 @@ export default function SiteHeader() {
   return (
     <header
       className={[
-        "sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl transition-[background-color,box-shadow] duration-300",
+        "sticky top-0 z-50 border-b border-white/10 backdrop-blur-md transition-[background-color,box-shadow] duration-300",
         scrolled
-          ? "bg-ink-950/92 shadow-[0_12px_40px_-18px_rgba(0,0,0,0.65)]"
-          : "bg-ink-950/70",
+          ? "bg-ink-950/96 shadow-[0_12px_32px_-24px_rgba(0,0,0,0.7)]"
+          : "bg-ink-950/92",
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 md:px-6">
@@ -83,7 +83,7 @@ export default function SiteHeader() {
           <NavLink href="/blog">Insights</NavLink>
           <a
             href="mailto:openlawesq@gmail.com"
-            className="rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 shadow-glow-sm ring-1 ring-gold-300/40 transition hover:brightness-105"
+            className="rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 shadow-sm ring-1 ring-gold-300/40 transition hover:bg-gold-300"
           >
             Request a consult
           </a>
@@ -116,7 +116,7 @@ export default function SiteHeader() {
             <NavLink href="/blog">Insights</NavLink>
             <a
               href="mailto:openlawesq@gmail.com"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 shadow-glow-sm ring-1 ring-gold-300/40 transition hover:brightness-105"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 shadow-sm ring-1 ring-gold-300/40 transition hover:bg-gold-300"
             >
               Request a consult
             </a>

@@ -30,14 +30,12 @@ function MarqueeStrip() {
   ];
   const doubled = [...items, ...items];
   return (
-    <div className="relative border-y border-white/10 bg-ink-900/40 py-3 overflow-hidden">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-ink-950 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-ink-950 to-transparent" />
+    <div className="relative overflow-hidden border-y border-white/10 bg-ink-900 py-3">
       <div className="flex w-max animate-marquee gap-12 px-6">
         {doubled.map((label, i) => (
           <span
             key={`${label}-${i}`}
-            className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-slate-300/70"
+            className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-slate-300/70"
           >
             {label}
           </span>
@@ -51,7 +49,7 @@ function Stat({ label, value }) {
   return (
     <motion.div
       variants={fadeUp}
-      className="group rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 ring-1 ring-white/[0.04] transition hover:border-gold-500/25 hover:bg-white/[0.06]"
+      className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 transition hover:border-gold-500/25 hover:bg-white/[0.07]"
     >
       <div className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-300/70">
         {label}
@@ -67,9 +65,8 @@ function PracticeCard({ title, children, n }) {
   return (
     <motion.article
       variants={fadeUp}
-      className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-7 shadow-soft-xl transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl"
+      className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
     >
-      <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gold-500/10 blur-3xl transition group-hover:bg-gold-500/15" />
       <div className="font-mono text-[10px] font-semibold text-gold-700/90">
         {String(n).padStart(2, "0")}
       </div>
@@ -77,7 +74,7 @@ function PracticeCard({ title, children, n }) {
         {title}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-slate-600">{children}</p>
-      <div className="mt-5 h-px w-12 bg-gradient-to-r from-gold-500 to-transparent transition group-hover:w-20" />
+      <div className="mt-5 h-px w-12 bg-gold-500/70 transition group-hover:w-20" />
     </motion.article>
   );
 }
@@ -85,11 +82,9 @@ function PracticeCard({ title, children, n }) {
 export default function Home() {
   return (
     <div>
-      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+      <section className="relative overflow-hidden border-b border-ink-800 bg-ink-950 text-white">
         <div className="absolute inset-0 bg-hero-radial" />
-        <div className="absolute inset-0 bg-hero-mesh opacity-90" />
-        <div className="absolute inset-0 opacity-[0.35] [background-image:theme(backgroundImage.grid)] [background-size:56px_56px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink-950/30 to-ink-950" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gold-500/20" />
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 pb-6 pt-14 md:px-6 md:pb-10 md:pt-20">
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
@@ -107,20 +102,9 @@ export default function Home() {
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-5 font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-balance md:text-6xl md:leading-[1.06]"
+                className="mt-5 font-serif text-4xl font-semibold leading-[1.08] tracking-tight md:text-balance md:text-6xl md:leading-[1.06]"
               >
-                Counsel that matches the{" "}
-                <span
-                  className="inline-block bg-gradient-to-r from-gold-200 via-gold-400 to-amber-300 bg-clip-text text-transparent"
-                  style={{
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  velocity
-                </span>{" "}
-                of your business.
+                Counsel that matches the velocity of your business.
               </motion.h1>
 
               <motion.p
@@ -129,7 +113,7 @@ export default function Home() {
               >
                 Attorney-led strategy for founders and operators: contracts,
                 digital-asset mechanics, and compliance you can actually ship
-                against—without sacrificing judgment.
+                against.
               </motion.p>
 
               <motion.div
@@ -138,7 +122,7 @@ export default function Home() {
               >
                 <a
                   href="mailto:openlawesq@gmail.com"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-glow ring-1 ring-gold-300/50 transition hover:brightness-105"
+                  className="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm ring-1 ring-gold-300/50 transition hover:bg-gold-300"
                 >
                   Request a consult
                 </a>
@@ -170,16 +154,16 @@ export default function Home() {
               className="relative hidden justify-center lg:flex"
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-[min(100%,420px)] w-[min(100%,420px)] rounded-full bg-gold-500/12 blur-[100px]" />
+                <div className="h-[min(100%,420px)] w-[min(100%,420px)] rounded-full border border-gold-500/15" />
               </div>
-              <div className="relative border-gradient rounded-[2rem] p-10 shadow-glow">
-                <div className="absolute inset-0 rounded-[2rem] bg-[length:200%_100%] animate-shimmer bg-gold-shine opacity-40" />
+              <div className="relative rounded-[2rem] border border-gold-500/20 bg-ink-900 p-10 shadow-soft-xl">
                 <ElegantLogo
                   priority
-                  className="relative mx-auto h-44 w-auto max-w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.45)] md:h-52"
+                  className="relative mx-auto h-44 w-auto max-w-full object-contain md:h-52"
                 />
                 <p className="relative mt-8 max-w-xs text-center font-serif text-lg leading-snug text-slate-200/90">
-                  “Clarity is a competitive advantage—especially under pressure.”
+                  “Clarity is a competitive advantage—especially under
+                  pressure.”
                 </p>
                 <div className="relative mt-6 flex justify-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
                   <span>Pittsburgh</span>
@@ -215,7 +199,8 @@ export default function Home() {
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-600 md:text-base">
               Structured advice for decisions that cannot wait: launches,
-              partnerships, token design, and the memos that keep boards aligned.
+              partnerships, token design, and the memos that keep boards
+              aligned.
             </p>
           </div>
           <Link
@@ -223,7 +208,10 @@ export default function Home() {
             className="group inline-flex items-center gap-2 self-start font-mono text-xs font-semibold uppercase tracking-wider text-slate-900 md:self-auto"
           >
             Read insights
-            <span className="transition group-hover:translate-x-0.5" aria-hidden>
+            <span
+              className="transition group-hover:translate-x-0.5"
+              aria-hidden
+            >
               →
             </span>
           </Link>
@@ -251,8 +239,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="relative overflow-hidden bg-sand-100">
-        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-gold-200/30 blur-3xl" />
+      <section className="relative overflow-hidden border-y border-slate-200 bg-sand-100">
         <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
             <div>
@@ -289,7 +276,7 @@ export default function Home() {
                   className="rounded-2xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:border-slate-300 hover:shadow-md"
                 >
                   <div className="flex items-start gap-4">
-                    <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-glow-sm" />
+                    <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-gold-500" />
                     <div>
                       <div className="font-semibold text-slate-900">{x.t}</div>
                       <div className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -304,11 +291,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-ink-950 text-white grain">
-        <div className="absolute inset-0 bg-hero-mesh opacity-50" />
-        <div className="absolute inset-0 opacity-25 [background-image:theme(backgroundImage.grid)] [background-size:48px_48px]" />
+      <section className="relative overflow-hidden bg-ink-950 text-white">
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
-          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-10 shadow-glow md:p-16">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-ink-900 p-10 shadow-soft-xl md:p-16">
             <div className="grid gap-10 md:grid-cols-[1.35fr_1fr] md:items-center">
               <div>
                 <Eyebrow dark className="text-gold-300/90">
@@ -325,7 +310,7 @@ export default function Home() {
               <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-stretch lg:flex-row lg:justify-end">
                 <a
                   href="mailto:openlawesq@gmail.com"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-glow-sm ring-1 ring-gold-300/45 transition hover:brightness-105"
+                  className="inline-flex items-center justify-center rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-sm ring-1 ring-gold-300/45 transition hover:bg-gold-300"
                 >
                   Email to get started
                 </a>

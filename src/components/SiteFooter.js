@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function SiteFooter() {
   return (
     <footer className="border-t border-slate-200 bg-white">
-      <div className="h-1 w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
+      <div className="h-px w-full bg-gold-500/30" />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3 md:px-6">
         <div>
           <div className="font-serif text-xl font-semibold tracking-tight text-slate-900">

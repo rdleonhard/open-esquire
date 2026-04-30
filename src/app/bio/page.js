@@ -7,11 +7,9 @@ import Eyebrow from "../../components/Eyebrow";
 export default function Bio() {
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-ink-950 text-white grain">
+      <section className="relative overflow-hidden border-b border-ink-800 bg-ink-950 text-white">
         <div className="absolute inset-0 bg-hero-radial" />
-        <div className="absolute inset-0 bg-hero-mesh opacity-80" />
-        <div className="absolute inset-0 opacity-[0.28] [background-image:theme(backgroundImage.grid)] [background-size:48px_48px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink-950/80" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gold-500/20" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <div className="max-w-3xl">
             <Eyebrow dark className="text-gold-300/85">
@@ -92,8 +90,7 @@ export default function Bio() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-ink-950 grain">
-        <div className="absolute inset-0 bg-hero-mesh opacity-40" />
+      <section className="relative overflow-hidden bg-ink-950">
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <AnimatedQuotes />
         </div>
@@ -128,13 +125,10 @@ function Timeline() {
       {timelineData.map((item, index) => (
         <motion.div
           key={index}
-          whileHover={{
-            scale: 1.01,
-            boxShadow: "0px 18px 45px -30px rgba(2, 6, 23, 0.35)",
-          }}
+          whileHover={{ y: -2 }}
           className="relative mb-5 rounded-2xl border border-slate-200 bg-white p-6 transition"
         >
-          <span className="absolute -left-[9px] top-8 hidden h-3 w-3 rounded-full border-2 border-white bg-gold-500 shadow-glow-sm md:block" />
+          <span className="absolute -left-[9px] top-8 hidden h-3 w-3 rounded-full border-2 border-white bg-gold-500 md:block" />
           <div className="flex items-start gap-4">
             <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-gold-500 md:hidden" />
             <div>
@@ -176,7 +170,7 @@ function AnimatedQuotes() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.5 }}
-      className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-10 text-center font-serif text-2xl font-semibold leading-snug text-white md:text-3xl"
+      className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-ink-900 p-10 text-center font-serif text-2xl font-semibold leading-snug text-white shadow-soft-xl md:text-3xl"
     >
       {quotes[quoteIndex]}
     </motion.div>

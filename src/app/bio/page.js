@@ -161,7 +161,7 @@ function AnimatedQuotes() {
       setQuoteIndex((prev) => (prev + 1) % quotes.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, [quotes.length]);
+  }, []);
 
   return (
     <motion.div

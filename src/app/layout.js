@@ -1,19 +1,19 @@
 import "./globals.css";
-import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-const sans = Inter({
+const sans = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const serif = Cormorant_Garamond({
+const serif = Instrument_Serif({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400"],
 });
 
 const mono = IBM_Plex_Mono({
@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body>
-        <div className="min-h-screen bg-sand-50 text-slate-900">
+        <div className="min-h-screen bg-stone-50 text-slate-900">
           <SiteHeader />
           <main>{children}</main>
           <SiteFooter />

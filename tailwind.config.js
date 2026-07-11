@@ -15,10 +15,11 @@ module.exports = {
           800: "#1A2A45",
           700: "#24385C",
         },
-        sand: {
-          50: "#FBFBF9",
-          100: "#F4F2ED",
-          200: "#E9E4D9",
+        stone: {
+          50: "#F5F6F8",
+          100: "#E8EAED",
+          200: "#D4D8DE",
+          300: "#B8BEC8",
         },
         gold: {
           50: "#FFF7E0",
@@ -38,7 +39,9 @@ module.exports = {
       },
       backgroundImage: {
         "hero-radial":
-          "radial-gradient(900px 500px at 20% 5%, rgba(200,155,60,0.10), transparent 60%)",
+          "radial-gradient(1100px 640px at 78% 42%, rgba(200,155,60,0.12), transparent 58%), radial-gradient(800px 480px at 12% 8%, rgba(36,56,92,0.45), transparent 55%)",
+        "hero-fade":
+          "linear-gradient(180deg, transparent 0%, rgba(11,18,32,0.55) 55%, #0B1220 100%)",
       },
       keyframes: {
         "fade-up": {
@@ -49,15 +52,15 @@ module.exports = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+        "line-grow": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
         },
       },
       animation: {
         "fade-up": "fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "fade-in": "fade-in 0.8s ease-out forwards",
-        marquee: "marquee 36s linear infinite",
+        "line-grow": "line-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards",
       },
     },
   },

@@ -13,7 +13,7 @@ function NavLink({ href, children }) {
       href={href}
       className={[
         "relative text-sm font-medium tracking-wide transition",
-        active ? "text-white" : "text-slate-200/80 hover:text-white",
+        active ? "text-white" : "text-slate-300/80 hover:text-white",
       ].join(" ")}
     >
       {children}
@@ -55,23 +55,23 @@ export default function SiteHeader() {
   return (
     <header
       className={[
-        "sticky top-0 z-50 border-b border-white/10 backdrop-blur-md transition-[background-color,box-shadow] duration-300",
+        "sticky top-0 z-50 border-b transition-[background-color,border-color] duration-300",
         scrolled
-          ? "bg-ink-950/96 shadow-[0_12px_32px_-24px_rgba(0,0,0,0.7)]"
-          : "bg-ink-950/92",
+          ? "border-white/10 bg-ink-950/95 backdrop-blur-md"
+          : "border-transparent bg-ink-950/80 backdrop-blur-sm",
       ].join(" ")}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 md:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         <Link
           href="/"
           className="group inline-flex items-center gap-3 text-white"
         >
-          <ElegantLogo className="h-9 w-auto max-w-[140px] shrink-0 object-contain object-left opacity-95 transition group-hover:opacity-100" />
+          <ElegantLogo className="h-8 w-auto max-w-[120px] shrink-0 object-contain object-left opacity-90 transition group-hover:opacity-100" />
           <span className="flex flex-col leading-tight">
-            <span className="font-serif text-lg font-semibold tracking-tight md:text-xl">
+            <span className="font-serif text-lg tracking-tight md:text-xl">
               Open Esquire
             </span>
-            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-gold-300/75">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-gold-300/70">
               Attorney at law
             </span>
           </span>
@@ -83,7 +83,7 @@ export default function SiteHeader() {
           <NavLink href="/blog">Insights</NavLink>
           <a
             href="mailto:openlawesq@gmail.com"
-            className="rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 shadow-sm ring-1 ring-gold-300/40 transition hover:bg-gold-300"
+            className="bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
           >
             Request a consult
           </a>
@@ -91,7 +91,7 @@ export default function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-white/90 ring-1 ring-white/10 transition hover:bg-white/10 md:hidden"
+          className="inline-flex items-center justify-center border border-white/15 p-2 text-white/90 transition hover:bg-white/10 md:hidden"
           aria-label="Open menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -109,14 +109,14 @@ export default function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-white/10 bg-ink-950/90 md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4">
+        <div className="border-t border-white/10 bg-ink-950 md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/bio">Bio</NavLink>
             <NavLink href="/blog">Insights</NavLink>
             <a
               href="mailto:openlawesq@gmail.com"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 shadow-sm ring-1 ring-gold-300/40 transition hover:bg-gold-300"
+              className="mt-2 inline-flex items-center justify-center bg-gold-500 px-4 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
             >
               Request a consult
             </a>
@@ -126,4 +126,3 @@ export default function SiteHeader() {
     </header>
   );
 }
-

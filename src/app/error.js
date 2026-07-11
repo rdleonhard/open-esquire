@@ -13,7 +13,7 @@ export default function Error({ error, reset }) {
       <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
         Error
       </p>
-      <h1 className="mt-4 font-serif text-3xl font-semibold text-slate-900">
+      <h1 className="mt-4 font-serif text-3xl font-normal text-slate-900">
         Something went wrong
       </h1>
       <p className="mt-3 text-sm leading-relaxed text-slate-600">
@@ -23,13 +23,13 @@ export default function Error({ error, reset }) {
         <button
           type="button"
           onClick={() => reset()}
-          className="inline-flex items-center justify-center rounded-full bg-ink-950 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-900"
+          className="inline-flex items-center justify-center bg-ink-950 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-800"
         >
           Try again
         </button>
         <Link
           href="/"
-          className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-slate-400"
+          className="inline-flex items-center justify-center border border-stone-300 bg-white px-6 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-stone-200 hover:bg-stone-50"
         >
           Home
         </Link>

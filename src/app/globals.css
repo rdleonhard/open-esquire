@@ -3,15 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply bg-sand-50 text-slate-900 antialiased;
+  @apply bg-stone-50 text-slate-900 antialiased;
 }
 
-/* Smooth scrolling without JS */
 html {
   scroll-behavior: smooth;
 }
 
-/* Better focus rings across the site */
 :focus-visible {
   outline: 2px solid theme(colors.gold.500);
   outline-offset: 3px;
@@ -25,6 +23,24 @@ html {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .bg-atmosphere {
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 70% 40%,
+        rgba(200, 155, 60, 0.08),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 15% 20%,
+        rgba(36, 56, 92, 0.35),
+        transparent 50%
+      );
+  }
+
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   }
 }
 

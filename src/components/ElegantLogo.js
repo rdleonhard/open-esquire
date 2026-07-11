@@ -1,24 +1,39 @@
 import Image from "next/image";
 
-const SRC = "/images/elegant_logo.png";
+const VARIANTS = {
+  sm: {
+    src: "/images/elegant_logo-sm.webp",
+    width: 240,
+    height: 240,
+    sizes: "120px",
+  },
+  lg: {
+    src: "/images/elegant_logo.webp",
+    width: 900,
+    height: 900,
+    sizes: "(max-width: 768px) 60vw, 520px",
+  },
+};
 
 /**
- * Brand mark from public/images/elegant_logo.png.
- * Constrain with Tailwind: e.g. `h-9 w-auto` (header) or `h-48 w-auto max-w-full` (hero).
+ * Brand mark — compressed WebP variants for header (sm) and hero (lg).
  */
 export default function ElegantLogo({
   className = "",
   priority = false,
   alt = "Open Esquire",
+  size = "sm",
 }) {
+  const variant = VARIANTS[size] ?? VARIANTS.sm;
+
   return (
     <Image
-      src={SRC}
+      src={variant.src}
       alt={alt}
-      width={480}
-      height={160}
+      width={variant.width}
+      height={variant.height}
       className={className}
-      sizes="(max-width: 768px) 200px, 400px"
+      sizes={variant.sizes}
       unoptimized
       priority={priority}
     />

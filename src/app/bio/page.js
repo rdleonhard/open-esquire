@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Eyebrow from "../../components/Eyebrow";
 
@@ -154,21 +154,23 @@ function AnimatedQuotes() {
     "“Blockchain is not just for finance. It's revolutionizing law.”",
     "“Artificial Intelligence will redefine how legal systems work.”",
   ];
+  const reduceMotion = useReducedMotion();
   const [quoteIndex, setQuoteIndex] = useState(0);
 
   useEffect(() => {
+    if (reduceMotion) return undefined;
     const interval = setInterval(() => {
       setQuoteIndex((prev) => (prev + 1) % quotes.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, [quotes.length]);
+  }, [quotes.length, reduceMotion]);
 
   return (
     <motion.div
       key={quoteIndex}
-      initial={{ opacity: 0, y: 10 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: reduceMotion ? 0 : 0.5 }}
       className="mx-auto max-w-3xl text-center"
     >
       <div className="mx-auto mb-8 h-px w-12 bg-gold-500/70" />

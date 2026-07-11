@@ -1,22 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import ElegantLogo from "../components/ElegantLogo";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
+import { fadeUp, stagger, viewportOnce } from "../lib/motion";
 
 const practices = [
   {
@@ -52,58 +39,65 @@ const methods = [
 ];
 
 export default function Home() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <div>
-      {/* Hero — one composition */}
       <section className="relative min-h-[min(100svh,920px)] overflow-hidden bg-ink-950 text-white">
         <div className="absolute inset-0 bg-hero-radial" />
         <div className="absolute inset-0 bg-grain opacity-60" />
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 0.22, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute inset-y-0 right-0 flex w-[min(72vw,720px)] items-center justify-end pr-0 md:pr-4 lg:pr-8"
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : { duration: 1.1, ease: [0.22, 1, 0.36, 1] }
+          }
+          className="pointer-events-none absolute inset-x-0 bottom-[-8%] flex justify-center opacity-[0.12] sm:inset-y-0 sm:bottom-auto sm:right-0 sm:left-auto sm:w-[min(68vw,680px)] sm:items-center sm:justify-end sm:opacity-[0.22] md:pr-4 lg:pr-8"
           aria-hidden
         >
           <ElegantLogo
+            size="lg"
             priority
-            className="h-auto w-full max-w-none object-contain object-right opacity-90"
+            alt=""
+            className="h-auto w-[min(88vw,420px)] max-w-none object-contain sm:w-full sm:object-right"
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-hero-fade md:bg-gradient-to-r md:from-ink-950 md:via-ink-950/85 md:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/75 to-ink-950/40 sm:bg-hero-fade md:bg-gradient-to-r md:from-ink-950 md:via-ink-950/85 md:to-transparent" />
 
         <div className="relative z-10 mx-auto flex min-h-[min(100svh,920px)] max-w-6xl flex-col justify-end px-4 pb-16 pt-28 md:justify-center md:px-6 md:pb-24 md:pt-20">
           <motion.div
             initial="hidden"
             animate="show"
-            variants={stagger}
+            variants={reduceMotion ? undefined : stagger}
             className="max-w-xl"
           >
             <motion.p
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="font-serif text-5xl font-normal tracking-tight text-white md:text-7xl md:leading-[0.95]"
             >
               Open Esquire
             </motion.p>
 
             <motion.div
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-5 origin-left"
             >
-              <div className="h-px w-16 origin-left animate-line-grow bg-gold-500" />
+              <div className="h-px w-16 origin-left bg-gold-500 motion-safe:animate-line-grow" />
             </motion.div>
 
             <motion.h1
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-8 font-serif text-2xl font-normal leading-snug tracking-tight text-stone-100 md:text-3xl md:leading-snug"
             >
               Counsel that matches the velocity of your business.
             </motion.h1>
 
             <motion.p
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-5 max-w-md text-base leading-relaxed text-slate-300/90"
             >
               Attorney-led strategy for founders and operators: contracts,
@@ -112,7 +106,7 @@ export default function Home() {
             </motion.p>
 
             <motion.div
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <a
@@ -132,30 +126,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Practice areas — editorial rows */}
       <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={stagger}
+            viewport={viewportOnce}
+            variants={reduceMotion ? undefined : stagger}
             className="max-w-2xl"
           >
             <motion.p
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-slate-500"
             >
               Practice areas
             </motion.p>
             <motion.h2
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-4 font-serif text-3xl font-normal tracking-tight text-slate-900 md:text-5xl md:leading-tight"
             >
               Where law meets product, markets, and code.
             </motion.h2>
             <motion.p
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-5 max-w-xl text-base leading-relaxed text-slate-600"
             >
               Structured advice for decisions that cannot wait: launches,
@@ -168,10 +161,14 @@ export default function Home() {
             {practices.map((p, idx) => (
               <motion.article
                 key={p.n}
-                initial={{ opacity: 0, y: 16 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: idx * 0.07, duration: 0.5 }}
+                viewport={viewportOnce}
+                transition={
+                  reduceMotion
+                    ? { duration: 0 }
+                    : { delay: idx * 0.07, duration: 0.5 }
+                }
                 className="grid gap-4 border-b border-stone-200 py-10 md:grid-cols-[5rem_1fr_1.2fr] md:gap-10 md:py-12"
               >
                 <span className="font-mono text-xs font-medium tracking-[0.2em] text-gold-700">
@@ -204,7 +201,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How we work */}
       <section className="border-b border-stone-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
@@ -225,10 +221,14 @@ export default function Home() {
               {methods.map((x, idx) => (
                 <motion.li
                   key={x.t}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.06, duration: 0.45 }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { delay: idx * 0.06, duration: 0.45 }
+                  }
                   className="flex gap-5 border-t border-stone-200 py-8 last:border-b"
                 >
                   <span
@@ -250,38 +250,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Closing CTA */}
       <section className="relative overflow-hidden bg-ink-950 text-white">
         <div className="absolute inset-0 bg-atmosphere" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={stagger}
+            viewport={viewportOnce}
+            variants={reduceMotion ? undefined : stagger}
             className="max-w-2xl"
           >
             <motion.p
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-gold-300/85"
             >
               Next step
             </motion.p>
             <motion.h2
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-4 font-serif text-3xl font-normal tracking-tight md:text-5xl md:leading-tight"
             >
               Tell us what you are building—and your timeline.
             </motion.h2>
             <motion.p
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-5 max-w-lg text-base leading-relaxed text-slate-300/85"
             >
               A short email with context is enough to start. We will reply with
               availability and suggested next steps.
             </motion.p>
             <motion.div
-              variants={fadeUp}
+              variants={reduceMotion ? undefined : fadeUp}
               className="mt-10 flex flex-col gap-3 sm:flex-row"
             >
               <a

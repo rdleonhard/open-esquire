@@ -1,39 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import Eyebrow from "../../components/Eyebrow";
+import { CONTACT_MAILTO } from "../../lib/site";
+import { viewportOnce } from "../../lib/motion";
+
+const POSTS = [
+  {
+    title: "Autonomous Lawyering Using OpenLaw",
+    summary:
+      "Ethics, scale, and what autonomy could look like in a world with open networks.",
+    link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
+    tag: "Strategy",
+  },
+  {
+    title: "Uniswag: Selling Products on Uniswap",
+    summary:
+      "A practical look at tokenized products and AMM mechanics for real commerce.",
+    link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
+    tag: "Web3",
+  },
+  {
+    title: "Decentralized Finance on the Ethereum Blockchain",
+    summary:
+      "How decentralized applications change legal advice and financial access globally.",
+    link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
+    tag: "Research",
+  },
+];
 
 export default function Blog() {
-  const posts = useMemo(
-    () => [
-      {
-        title: "Autonomous Lawyering Using OpenLaw",
-        summary:
-          "Ethics, scale, and what autonomy could look like in a world with open networks.",
-        link: "https://medium.com/@openlawesq/autonomous-lawyering-using-openlaw-dad9c604975b",
-        tag: "Strategy",
-      },
-      {
-        title: "Uniswag: Selling Products on Uniswap",
-        summary:
-          "A practical look at tokenized products and AMM mechanics for real commerce.",
-        link: "https://medium.com/@openlawesq/uniswag-selling-products-on-uniswap-f2d4fb25f82f",
-        tag: "Web3",
-      },
-      {
-        title: "Decentralized Finance on the Ethereum Blockchain",
-        summary:
-          "How decentralized applications change legal advice and financial access globally.",
-        link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359732",
-        tag: "Research",
-      },
-    ],
-    []
-  );
-
-  const featured = posts[0];
+  const reduceMotion = useReducedMotion();
+  const featured = POSTS[0];
 
   return (
     <div className="bg-stone-50">
@@ -57,9 +56,10 @@ export default function Blog() {
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
         <motion.article
-          initial={{ opacity: 0, y: 14 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={viewportOnce}
+          transition={reduceMotion ? { duration: 0 } : undefined}
           className="border-b border-stone-200 pb-14"
         >
           <Eyebrow>Featured</Eyebrow>
@@ -96,13 +96,17 @@ export default function Blog() {
             </p>
 
             <div className="mt-10 border-t border-stone-200">
-              {posts.map((post, index) => (
+              {POSTS.map((post, index) => (
                 <motion.div
                   key={post.title}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
+                  viewport={viewportOnce}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { delay: index * 0.05 }
+                  }
                 >
                   <Link
                     href={post.link}
@@ -147,7 +151,7 @@ export default function Blog() {
                 timeline and context. We’ll respond with next steps.
               </p>
               <a
-                href="mailto:openlawesq@gmail.com"
+                href={CONTACT_MAILTO}
                 className="mt-6 inline-flex items-center justify-center bg-ink-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-ink-800"
               >
                 Email to get started

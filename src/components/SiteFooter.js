@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "../lib/site";
 
 export default function SiteFooter() {
   return (
@@ -46,9 +47,9 @@ export default function SiteFooter() {
           </div>
           <a
             className="text-slate-300 transition hover:text-white"
-            href="mailto:openlawesq@gmail.com"
+            href={CONTACT_MAILTO}
           >
-            openlawesq@gmail.com
+            {CONTACT_EMAIL}
           </a>
           <a
             className="text-slate-300 transition hover:text-white"

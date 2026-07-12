@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CONTACT_MAILTO } from "../lib/site";
 import ElegantLogo from "./ElegantLogo";
 
 function NavLink({ href, children, onNavigate }) {
@@ -97,7 +98,7 @@ export default function SiteHeader() {
           <NavLink href="/bio">Bio</NavLink>
           <NavLink href="/blog">Insights</NavLink>
           <a
-            href="mailto:openlawesq@gmail.com"
+            href={CONTACT_MAILTO}
             className="bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
           >
             Request a consult
@@ -143,7 +144,7 @@ export default function SiteHeader() {
               Insights
             </NavLink>
             <a
-              href="mailto:openlawesq@gmail.com"
+              href={CONTACT_MAILTO}
               className="mt-2 inline-flex items-center justify-center bg-gold-500 px-4 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
             >
               Request a consult

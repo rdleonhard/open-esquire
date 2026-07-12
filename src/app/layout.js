@@ -2,6 +2,7 @@ import "./globals.css";
 import { IBM_Plex_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
+import { SITE_URL } from "../lib/site";
 
 const sans = Instrument_Sans({
   subsets: ["latin"],
@@ -23,10 +24,8 @@ const mono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl = "https://www.openesquire.com";
-
 export const metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Open Esquire — Technology & blockchain counsel",
     template: "%s · Open Esquire",
@@ -36,7 +35,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: "Open Esquire",
     title: "Open Esquire — Technology & blockchain counsel",
     description:

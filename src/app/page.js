@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import ElegantLogo from "../components/ElegantLogo";
 import { fadeUp, stagger, viewportOnce } from "../lib/motion";
+import { CONTACT_MAILTO } from "../lib/site";
 
 const practices = [
   {
@@ -110,7 +111,7 @@ export default function Home() {
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <a
-                href="mailto:openlawesq@gmail.com"
+                href={CONTACT_MAILTO}
                 className="inline-flex items-center justify-center bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
               >
                 Request a consult
@@ -223,7 +224,7 @@ export default function Home() {
                   key={x.t}
                   initial={reduceMotion ? false : { opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={viewportOnce}
                   transition={
                     reduceMotion
                       ? { duration: 0 }
@@ -284,7 +285,7 @@ export default function Home() {
               className="mt-10 flex flex-col gap-3 sm:flex-row"
             >
               <a
-                href="mailto:openlawesq@gmail.com"
+                href={CONTACT_MAILTO}
                 className="inline-flex items-center justify-center bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
               >
                 Email to get started

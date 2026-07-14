@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import ContactForm from "../components/ContactForm";
 import ElegantLogo from "../components/ElegantLogo";
 import { fadeUp, stagger, viewportOnce } from "../lib/motion";
 
@@ -110,7 +111,7 @@ export default function Home() {
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <a
-                href="mailto:openlawesq@gmail.com"
+                href="#contact"
                 className="inline-flex items-center justify-center bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
               >
                 Request a consult
@@ -250,7 +251,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-ink-950 text-white">
+      <section id="contact" className="relative overflow-hidden bg-ink-950 text-white">
         <div className="absolute inset-0 bg-atmosphere" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <motion.div
@@ -276,19 +277,16 @@ export default function Home() {
               variants={reduceMotion ? undefined : fadeUp}
               className="mt-5 max-w-lg text-base leading-relaxed text-slate-300/85"
             >
-              A short email with context is enough to start. We will reply with
+              A short note with context is enough to start. We will reply with
               availability and suggested next steps.
             </motion.p>
+            <motion.div variants={reduceMotion ? undefined : fadeUp}>
+              <ContactForm />
+            </motion.div>
             <motion.div
               variants={reduceMotion ? undefined : fadeUp}
-              className="mt-10 flex flex-col gap-3 sm:flex-row"
+              className="mt-8"
             >
-              <a
-                href="mailto:openlawesq@gmail.com"
-                className="inline-flex items-center justify-center bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
-              >
-                Email to get started
-              </a>
               <Link
                 href="/bio"
                 className="inline-flex items-center justify-center border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5"

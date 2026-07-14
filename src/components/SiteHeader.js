@@ -97,7 +97,7 @@ export default function SiteHeader() {
           <NavLink href="/bio">Bio</NavLink>
           <NavLink href="/blog">Insights</NavLink>
           <a
-            href="mailto:openlawesq@gmail.com"
+            href="/#contact"
             className="bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
           >
             Request a consult
@@ -143,7 +143,8 @@ export default function SiteHeader() {
               Insights
             </NavLink>
             <a
-              href="mailto:openlawesq@gmail.com"
+              href="/#contact"
+              onClick={close}
               className="mt-2 inline-flex items-center justify-center bg-gold-500 px-4 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-gold-300"
             >
               Request a consult

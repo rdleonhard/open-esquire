@@ -44,7 +44,7 @@ export default function Bio() {
               ))}
             </ul>
             <a
-              href="mailto:openlawesq@gmail.com"
+              href="/#contact"
               className="mt-8 inline-flex items-center justify-center bg-ink-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink-800"
             >
               Contact

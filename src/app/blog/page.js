@@ -147,7 +147,7 @@ export default function Blog() {
                 timeline and context. We’ll respond with next steps.
               </p>
               <a
-                href="mailto:openlawesq@gmail.com"
+                href="/#contact"
                 className="mt-6 inline-flex items-center justify-center bg-ink-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-ink-800"
               >
                 Email to get started

@@ -6,6 +6,8 @@ import ContactForm from "../components/ContactForm";
 import ElegantLogo from "../components/ElegantLogo";
 import { fadeUp, stagger, viewportOnce } from "../lib/motion";
 
+const attorneyProfileUrl = "https://rdleonhard.github.io/rob_profile/";
+
 const practices = [
   {
     n: "01",
@@ -116,12 +118,13 @@ export default function Home() {
               >
                 Request a consult
               </a>
-              <Link
-                href="/bio"
+              <a
+                href={attorneyProfileUrl}
+                rel="me"
                 className="inline-flex items-center justify-center border border-white/20 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
               >
-                Credentials & story
-              </Link>
+                Credentials & story ↗
+              </a>
             </motion.div>
           </motion.div>
         </div>
@@ -287,12 +290,13 @@ export default function Home() {
               variants={reduceMotion ? undefined : fadeUp}
               className="mt-8"
             >
-              <Link
-                href="/bio"
+              <a
+                href={attorneyProfileUrl}
+                rel="me"
                 className="inline-flex items-center justify-center border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
               >
-                View bio
-              </Link>
+                View attorney profile ↗
+              </a>
             </motion.div>
           </motion.div>
         </div>

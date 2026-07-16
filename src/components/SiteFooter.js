@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const attorneyProfileUrl = "https://rdleonhard.github.io/rob_profile/";
+
 export default function SiteFooter() {
   return (
     <footer className="bg-ink-950 text-slate-300">
@@ -20,12 +22,13 @@ export default function SiteFooter() {
           <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
             Explore
           </div>
-          <Link
+          <a
             className="text-slate-300 transition hover:text-white"
-            href="/bio"
+            href={attorneyProfileUrl}
+            rel="me"
           >
-            Attorney bio
-          </Link>
+            Attorney profile ↗
+          </a>
           <Link
             className="text-slate-300 transition hover:text-white"
             href="/blog"

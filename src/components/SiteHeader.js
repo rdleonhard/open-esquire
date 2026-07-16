@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ElegantLogo from "./ElegantLogo";
 
+const attorneyProfileUrl = "https://rdleonhard.github.io/rob_profile/";
+
 function NavLink({ href, children, onNavigate }) {
   const pathname = usePathname();
   const active = pathname === href || pathname === `${href}/`;
@@ -94,7 +96,13 @@ export default function SiteHeader() {
           aria-label="Primary"
         >
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/bio">Bio</NavLink>
+          <a
+            href={attorneyProfileUrl}
+            rel="me"
+            className="relative text-sm font-medium tracking-wide text-slate-300/80 transition hover:text-white"
+          >
+            Attorney profile
+          </a>
           <NavLink href="/blog">Insights</NavLink>
           <a
             href="/#contact"
@@ -136,9 +144,14 @@ export default function SiteHeader() {
             <NavLink href="/" onNavigate={close}>
               Home
             </NavLink>
-            <NavLink href="/bio" onNavigate={close}>
-              Bio
-            </NavLink>
+            <a
+              href={attorneyProfileUrl}
+              rel="me"
+              onClick={close}
+              className="relative text-sm font-medium tracking-wide text-slate-300/80 transition hover:text-white"
+            >
+              Attorney profile
+            </a>
             <NavLink href="/blog" onNavigate={close}>
               Insights
             </NavLink>
